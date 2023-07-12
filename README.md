@@ -40,6 +40,7 @@ My to-do list project in Microverse.
  1. HTML5
  2. CSS3
  3. JavaScript
+ 4. Webpack
 
 
 ### Key Features <a name="key-features"></a>
@@ -69,7 +70,7 @@ git clone [TO-DO-LIST](https://github.com/2004-okari/TODOLIST)
 
 Install this project with:
 
-cd MY-PORTFOLIO
+cd TODOLIST
 npm install
 ### Usage
 
