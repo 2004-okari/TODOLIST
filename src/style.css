@@ -6,6 +6,8 @@
   padding: 0;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 body {
   .section-1 {
     max-width: 650px;
@@ -73,14 +75,24 @@ body {
         align-items: center;
         justify-content: space-between;
         height: 48px;
+        .checkbox {
+          margin-right: 10px;
+        }
         .label {
+          width: 95%;
           display: flex;
           flex-direction: row;
           align-items: center;
-          font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;
-          font-size: 1.35em;
           .checkbox {
-            margin-right: 10px;
+            transform: scale(1.2);
+          }
+          .text-center {
+            font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;
+            font-size: 1.35em;
+            max-width: 580px;
+            width: 82%;
+            outline: none;
+            border: none;
           }
         }
         .icon-3 {

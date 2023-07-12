@@ -21,8 +21,11 @@ tasks.forEach((task) => {
   const toDoList = document.createElement('div');
   toDoList.classList.add('item');
   toDoList.innerHTML = 
-  `<input type="checkbox" class="checkbox">
-   <input type="text" name="name" value="${task['description']}" readonly class="label">
+  `
+  <div class="label">
+    <input type="checkbox" class="checkbox">
+    <input type="text" name="name" value="${task['description']}" readonly class="text-center">
+   </div>
    <i class="fa-solid fa-trash-can icon-3"></i>`
 
   listStorage.appendChild(toDoList);
