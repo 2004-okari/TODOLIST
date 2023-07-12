@@ -66,8 +66,9 @@ git clone [TO-DO-LIST](https://github.com/2004-okari/TODOLIST)
 
 Install this project with:
 
-cd TODOLIST
-npm install
+- cd TODOLIST
+- run ***npm i*** or ***npm install*** in your terminal to download all the packages needed to make the project run
+- run ***npm run start*** or ***npm start*** to open the project in your browser
 ### Usage
 
 To run the project, execute the following command:
