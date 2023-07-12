@@ -67,13 +67,16 @@ git clone [TO-DO-LIST](https://github.com/2004-okari/TODOLIST)
 Install this project with:
 
 - cd TODOLIST
-- run ***npm i*** or ***npm install*** in your terminal to download all the packages needed to make the project run
-- run ***npm run start*** or ***npm start*** to open the project in your browser
+- npm install
+  
 ### Usage
 
 To run the project, execute the following command:
-
 Open the index.html file on the browser or use a VS code extension server to start the project`
+
+- run ***npm i*** or ***npm install*** in your terminal to download all the packages needed to make the project run
+- run ***npm run start*** or ***npm start*** to open the project in your browser
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
