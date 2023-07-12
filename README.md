@@ -14,7 +14,6 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
-    - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -50,9 +49,6 @@ My to-do list project in Microverse.
   3. Preview of the list page
   4. Responsive design
 
-### Live Demo <a name="live-demo"></a>
-
-[Live Demo](not available)
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
