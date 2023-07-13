@@ -10,7 +10,8 @@ function renderTasks() {
 
   tasks.forEach((task, index) => {
     const toDoList = document.createElement('div');
-    toDoList.classList.add('item', `item-${index}`);
+    toDoList.classList.add('item');
+    toDoList.dataset.index = index;
     toDoList.innerHTML = `
       <div class="label">
         <input type="checkbox" class="checkbox">
@@ -23,14 +24,21 @@ function renderTasks() {
 
   // Attach event listeners to remove buttons
   const removeButtons = document.querySelectorAll('.icon-3');
-  removeButtons.forEach((removeButton, index) => {
-    // eslint-disable-next-line no-use-before-define
-    removeButton.addEventListener('click', () => removeTask(index));
+  removeButtons.forEach((removeButton) => {
+    removeButton.addEventListener('click', () => {
+      const index = removeButton.dataset.index;
+      removeTask(index);
+    });
   });
 
   // Attach event listeners to text inputs for editing
   const textCenterInputs = document.querySelectorAll('.text-center');
   textCenterInputs.forEach((input) => {
+    input.addEventListener('input', (event) => {
+      const index = event.target.closest('.item').dataset.index;
+      tasks[index].description = event.target.value;
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    });
     input.addEventListener('click', () => {
       if (input.hasAttribute('readonly')) {
         input.removeAttribute('readonly');
@@ -44,7 +52,7 @@ function renderTasks() {
 // Use info from input to add to list
 const addTask = () => {
   if (taskInput.value) {
-    const newIndex = tasks.length + 1;
+    const newIndex = tasks.length;
     tasks.push({
       description: taskInput.value,
       completed: false,
