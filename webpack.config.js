@@ -11,6 +11,7 @@ module.exports = {
   ],
   devServer: {
     static: './dist',
+    hot: true,
   },
   output: {
     filename: '[name].bundle.js',

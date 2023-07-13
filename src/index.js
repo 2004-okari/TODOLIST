@@ -61,8 +61,7 @@ function removeTask(index) {
 
 // Attach event listener to remove buttons
 const removeButtons = document.querySelectorAll('.icon-3');
-removeButtons.forEach((removeButton) => {
-  const { index } = removeButton.dataset;
+removeButtons.forEach((removeButton, index) => {
   removeButton.addEventListener('click', () => removeTask(index));
 });
 
