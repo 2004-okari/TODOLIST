@@ -23,12 +23,11 @@ function renderTasks() {
   });
 
   // Attach event listeners to remove buttons
+  // Attach event listeners to remove buttons
   const removeButtons = document.querySelectorAll('.icon-3');
-  removeButtons.forEach((removeButton) => {
-    removeButton.addEventListener('click', () => {
-      const index = removeButton.dataset.index;
-      removeTask(index);
-    });
+  removeButtons.forEach((removeButton, index) => {
+    // eslint-disable-next-line no-use-before-define
+    removeButton.addEventListener('click', () => removeTask(index));
   });
 
   // Attach event listeners to text inputs for editing
