@@ -3,7 +3,7 @@
 const taskInput = document.querySelector('.list-item');
 const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 // Function to render tasks in the DOM
-function renderTasks() {
+const renderTasks = () => {
   const listStorage = document.querySelector('.list-storage');
   listStorage.innerHTML = '';
 
@@ -43,10 +43,10 @@ function renderTasks() {
       }
     });
   });
-}
+};
 
 // Remove task function
-function removeTask(index) {
+const removeTask = (index) => {
   tasks.splice(index, 1);
 
   // Update index list
@@ -59,7 +59,7 @@ function removeTask(index) {
   renderTasks(); // Update the DOM
 
   return tasks;
-}
+};
 
 // Use info from input to add to list
 const addTask = () => {
