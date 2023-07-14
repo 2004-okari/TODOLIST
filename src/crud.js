@@ -1,7 +1,5 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-use-before-define */
-import remover from './taskUtils.js';
-
 const taskInput = document.querySelector('.list-item');
 const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
@@ -76,6 +74,21 @@ function removeTask(index) {
 
   return tasks;
 }
+
+const remover = () => {
+  const incompleteTasks = tasks.filter((task) => !task.completed);
+  tasks.length = 0;
+  Array.prototype.push.apply(tasks, incompleteTasks);
+
+  // Update index list
+  for (let i = 0; i < tasks.length; i += 1) {
+    tasks[i].index = i + 1;
+  }
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+
+  return tasks;
+};
 
 // Remove all tasks
 const removeAllButton = document.querySelector('.clear-all');
