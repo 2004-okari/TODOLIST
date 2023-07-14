@@ -57,24 +57,6 @@ function renderTasks() {
       localStorage.setItem('tasks', JSON.stringify(tasks));
     });
   });
-
-  // Remove all tasks
-  const removeAllButton = document.querySelector('.clear-all');
-  removeAllButton.addEventListener('click', () => {
-    const incompleteTasks = tasks.filter((task) => !task.completed);
-    tasks.length = 0;
-    Array.prototype.push.apply(tasks, incompleteTasks);
-
-    // Update index list
-    for (let i = 0; i < tasks.length; i += 1) {
-      tasks[i].index = i + 1;
-    }
-
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    renderTasks(); // Update the DOM
-
-    return tasks;
-  });
 }
 
 // Remove task function
@@ -92,6 +74,28 @@ function removeTask(index) {
 
   return tasks;
 }
+
+const remover = () => {
+  const incompleteTasks = tasks.filter((task) => !task.completed);
+  tasks.length = 0;
+  Array.prototype.push.apply(tasks, incompleteTasks);
+
+  // Update index list
+  for (let i = 0; i < tasks.length; i += 1) {
+    tasks[i].index = i + 1;
+  }
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+
+  return tasks;
+};
+
+// Remove all tasks
+const removeAllButton = document.querySelector('.clear-all');
+removeAllButton.addEventListener('click', () => {
+  remover();
+  renderTasks(); // Update the DOM
+});
 
 // Use info from input to add to list
 const addTask = () => {
