@@ -2,8 +2,9 @@
 /* eslint-disable no-use-before-define */
 const taskInput = document.querySelector('.list-item');
 const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
 // Function to render tasks in the DOM
-const renderTasks = () => {
+function renderTasks() {
   const listStorage = document.querySelector('.list-storage');
   listStorage.innerHTML = '';
 
@@ -13,7 +14,7 @@ const renderTasks = () => {
     toDoList.dataset.index = index;
     toDoList.innerHTML = `
       <div class="label">
-        <input type="checkbox" class="checkbox">
+        <input type="checkbox" class="checkbox" ${task.completed ? 'checked' : ''}>
         <input type="text" name="name" value="${task.description}" readonly class="text-center">
       </div>
       <i class="fa-solid fa-trash-can icon-3 btn-${index}" data-index="${index}"></i>`;
@@ -43,10 +44,23 @@ const renderTasks = () => {
       }
     });
   });
-};
+
+  // Checkbox input
+  const checkBoxes = document.querySelectorAll('.checkbox');
+  checkBoxes.forEach((box, index) => {
+    box.addEventListener('change', () => {
+      if (box.checked) {
+        tasks[index].completed = true;
+      } else {
+        tasks[index].completed = false;
+      }
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    });
+  });
+}
 
 // Remove task function
-const removeTask = (index) => {
+function removeTask(index) {
   tasks.splice(index, 1);
 
   // Update index list
@@ -59,7 +73,29 @@ const removeTask = (index) => {
   renderTasks(); // Update the DOM
 
   return tasks;
+}
+
+const remover = () => {
+  const incompleteTasks = tasks.filter((task) => !task.completed);
+  tasks.length = 0;
+  Array.prototype.push.apply(tasks, incompleteTasks);
+
+  // Update index list
+  for (let i = 0; i < tasks.length; i += 1) {
+    tasks[i].index = i + 1;
+  }
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+
+  return tasks;
 };
+
+// Remove all tasks
+const removeAllButton = document.querySelector('.clear-all');
+removeAllButton.addEventListener('click', () => {
+  remover();
+  renderTasks(); // Update the DOM
+});
 
 // Use info from input to add to list
 const addTask = () => {
