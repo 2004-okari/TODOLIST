@@ -1,6 +1,6 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-use-before-define */
-import { attachCheckboxEventListeners, attachRemoveAllEventListener } from './taskUtils.js';
+import remover from './taskUtils.js';
 
 const taskInput = document.querySelector('.list-item');
 const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -47,9 +47,18 @@ function renderTasks() {
     });
   });
 
-  // Call the checkbox and remove all event listener functions from taskUtils.js
-  attachCheckboxEventListeners();
-  attachRemoveAllEventListener();
+  // Checkbox input
+  const checkBoxes = document.querySelectorAll('.checkbox');
+  checkBoxes.forEach((box, index) => {
+    box.addEventListener('change', () => {
+      if (box.checked) {
+        tasks[index].completed = true;
+      } else {
+        tasks[index].completed = false;
+      }
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    });
+  });
 }
 
 // Remove task function
@@ -67,6 +76,13 @@ function removeTask(index) {
 
   return tasks;
 }
+
+// Remove all tasks
+const removeAllButton = document.querySelector('.clear-all');
+removeAllButton.addEventListener('click', () => {
+  remover();
+  renderTasks(); // Update the DOM
+});
 
 // Use info from input to add to list
 const addTask = () => {

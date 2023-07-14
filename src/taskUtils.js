@@ -1,39 +1,16 @@
-// taskUtils.js
-import { renderTasks } from './crud.js';
+const remover = () => {
+  let tasks = JSON.parse(localStorage.getItem('tasks'));
 
-const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  tasks = tasks.filter((task) => !task.completed);
 
-// Checkbox input
-export function attachCheckboxEventListeners() {
-  const checkBoxes = document.querySelectorAll('.checkbox');
-  checkBoxes.forEach((box, index) => {
-    box.addEventListener('change', () => {
-      if (box.checked) {
-        tasks[index].completed = true;
-      } else {
-        tasks[index].completed = false;
-      }
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-    });
-  });
-}
+  // Update index list
+  for (let i = 0; i < tasks.length; i += 1) {
+    tasks[i].index = i + 1;
+  }
 
-// Remove all tasks
-export function attachRemoveAllEventListener() {
-  const removeAllButton = document.querySelector('.clear-all');
-  removeAllButton.addEventListener('click', () => {
-    const incompleteTasks = tasks.filter((task) => !task.completed);
-    tasks.length = 0;
-    Array.prototype.push.apply(tasks, incompleteTasks);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 
-    // Update index list
-    for (let i = 0; i < tasks.length; i += 1) {
-      tasks[i].index = i + 1;
-    }
+  return tasks;
+};
 
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    renderTasks(); // Update the DOM
-
-    return tasks;
-  });
-}
+export default remover;
