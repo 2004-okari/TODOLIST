@@ -1,31 +1,8 @@
 import './style.css';
+import { addTask, renderTasks } from './crud.js';
 
-const tasks = [
-  {
-    description: 'wash the dishes',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'buy the house',
-    completed: false,
-    index: 2,
-  },
-];
+const createTask = document.querySelector('.icon-2');
+createTask.addEventListener('click', addTask);
 
-let i = 0;
-
-const listStorage = document.querySelector('.list-storage');
-tasks.forEach((task) => {
-  const toDoList = document.createElement('div');
-  toDoList.classList.add('item', `item-${i}`);
-  toDoList.innerHTML = `
-  <div class="label">
-    <input type="checkbox" class="checkbox">
-    <input type="text" name="name" value="${task.description}" readonly class="text-center">
-   </div>
-   <i class="fa-solid fa-trash-can icon-3"></i>`;
-
-  listStorage.appendChild(toDoList);
-  i += 1;
-});
+// Load and render tasks on initial page load
+renderTasks();
