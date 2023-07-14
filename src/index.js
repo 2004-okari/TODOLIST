@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import './style.css';
 
 const taskInput = document.querySelector('.list-item');
@@ -22,11 +23,25 @@ function renderTasks() {
     listStorage.appendChild(toDoList);
   });
 
-  // Attach event listeners to remove buttons
+  // Remove task function
+  function removeTask(index) {
+    tasks.splice(index, 1);
+
+    // Update index list
+    for (let i = index; i < tasks.length; i += 1) {
+      tasks[i].index -= 1;
+    }
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    renderTasks(); // Update the DOM
+
+    return tasks;
+  }
+
   // Attach event listeners to remove buttons
   const removeButtons = document.querySelectorAll('.icon-3');
   removeButtons.forEach((removeButton, index) => {
-    // eslint-disable-next-line no-use-before-define
     removeButton.addEventListener('click', () => removeTask(index));
   });
 
@@ -51,7 +66,7 @@ function renderTasks() {
 // Use info from input to add to list
 const addTask = () => {
   if (taskInput.value) {
-    const newIndex = tasks.length;
+    const newIndex = tasks.length + 1;
     tasks.push({
       description: taskInput.value,
       completed: false,
@@ -69,22 +84,6 @@ const addTask = () => {
 
 const createTask = document.querySelector('.icon-2');
 createTask.addEventListener('click', addTask);
-
-// Remove task function
-function removeTask(index) {
-  tasks.splice(index, 1);
-
-  // Update index list
-  for (let i = index; i < tasks.length; i += 1) {
-    tasks[i].index -= 1;
-  }
-
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-
-  renderTasks(); // Update the DOM
-
-  return tasks;
-}
 
 // Load and render tasks on initial page load
 renderTasks();
